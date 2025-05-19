@@ -9,19 +9,6 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-
-    <ul class="nav justify-content-center">
-         <li class="nav-item">
-    <a class="nav-link" href="/">Main</a>
-    </li>
-        
-    <li class="nav-item">
-     <a class="nav-link active" aria-current="page" href="{% url 'courses' %}">Courses</a>
-    </li>
-    
- 
-    </ul>
-
     <main>
         {% block content %}
     {% endblock %}
