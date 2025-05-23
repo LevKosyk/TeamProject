@@ -1,0 +1,16 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Main Page{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Create student</h1>
+    <h2 class="mb-4 text-muted">Put valid data to create student</h2>
+
+    <form method="post" class="card p-4 shadow-sm bg-light">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+</div>
+{% endblock %}

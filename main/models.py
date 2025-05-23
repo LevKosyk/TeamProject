@@ -1,5 +1,21 @@
 from django.db import models
 
+class Student(models.Model):
+    name = models.TextField("name")
+    age = models.IntegerField("age")
+    grade = models.TextField("grade")
+
+    def get_absolute_url(self):
+        return f'/{self.pk}'
+
+    def __str__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = 'Student'
+        verbose_name_plural = 'Students'
+
+
 class Receipt(models.Model):
     title = models.TextField("Name")
     description = models.TextField("How to cook")
