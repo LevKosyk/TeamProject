@@ -1,0 +1,45 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Main Page{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Create student</h1>
+    <h2 class="mb-4 text-muted">Put valid data to create student</h2>
+
+    <form method="post" enctype="multipart/form-data" class="card p-4 shadow-sm bg-light">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <div class="mb-3">
+            {{ form.name.label_tag }}{{ form.name }}
+            {{ form.name.errors }}
+        </div>
+        <div class="mb-3">
+            {{ form.age.label_tag }}{{ form.age }}
+            {{ form.age.errors }}
+        </div>
+        <div class="mb-3">
+            {{ form.grade.label_tag }}{{ form.grade }}
+            {{ form.grade.errors }}
+        </div>
+        <div class="mb-3">
+            {{ form.photo.label_tag }}{{ form.photo }}
+            {{ form.photo.errors }}
+            <div>
+                <img id="photo-preview" src="{% if form.instance.photo %}{{ form.instance.photo.url }}{% else %}{{ MEDIA_URL }}photos/default.jpg{% endif %}" alt="Photo preview" class="img-thumbnail mt-2" style="max-width: 200px;">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<script>
+document.getElementById('id_photo').addEventListener('change', function(event) {
+    const [file] = event.target.files;
+    if (file) {
+        document.getElementById('photo-preview').src = URL.createObjectURL(file);
+    }
+});
+</script>
+{% endblock %}

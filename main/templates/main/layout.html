@@ -9,19 +9,43 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
-
-    <ul class="nav justify-content-center">
-         <li class="nav-item">
-    <a class="nav-link" href="/">Main</a>
-    </li>
-        
-    <li class="nav-item">
-     <a class="nav-link active" aria-current="page" href="{% url 'courses' %}">Courses</a>
-    </li>
-    
- 
-    </ul>
-
+<header>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm mb-4">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="{% url 'home' %}">Home</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav align-items-center">
+          {% if user.is_authenticated %}
+            <li class="nav-item ms-2">
+              <a href="{% url 'add' %}" class="btn btn-light text-primary fw-semibold shadow-sm">
+                <i class="bi bi-person-plus-fill"></i> Create Student
+              </a>
+            </li>
+            <li class="nav-item ms-2">
+              <a href="{% url 'profile' %}" class="btn btn-light text-primary fw-semibold shadow-sm">
+                <i class="bi bi-person-fill"></i> Profile
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logOut' %}">Log out</a>
+            </li>
+          {% else %}
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logIn' %}">Log in</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'logUp' %}">Log up</a>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
     <main>
         {% block content %}
     {% endblock %}
